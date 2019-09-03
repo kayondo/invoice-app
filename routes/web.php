@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/invoices', 'InvoiceController@index');
-Route::post('/invoices', 'InvoiceController@store');
-Route::get('/invoices/create', 'InvoiceController@create');
+Route::resource('invoices', 'InvoiceController');
+Route::resource('customers', 'CustomerController');
+

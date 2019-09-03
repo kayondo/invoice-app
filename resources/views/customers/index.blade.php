@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Invoices</title>
+    <title>Customers</title>
 </head>
 <body>
     
 
-    @foreach ($invoices as $invoice)
-        <li> 
-        <a href="/invoices/{{$invoice->id}}">
-            {{ $invoice->details }}
-        </a>
-        </li>  
+    @foreach ($customers as $customer)
+        <li> {{$customer->cust_lname }}</li>  
     @endforeach
 </body>
 </html>

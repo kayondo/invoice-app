@@ -23,16 +23,30 @@ class InvoiceController extends Controller
 
     public function store()
     {
-        $invoice = new Invoice();
-
-        $invoice->date = request('date');
-        $invoice->invoice_id = request('invoice_number');
-        $invoice->details = request('details');
-        $invoice->units = request('units');
-        $invoice->unit_price = request('unit_price');
-
-        $invoice->save();
-
+        Invoice::create(request(['details','units','unit_price']));       
         return redirect('/invoices');
+    }
+
+    public function edit(Invoice $invoice)
+    {
+        return view('invoices.edit', compact('invoice'));
+    }
+
+    public function show(Invoice $invoice)
+    {
+        return view('invoices.show', compact('invoice'));
+    }
+
+    public function update(Invoice $invoice)
+    {
+        $invoice->update(request(['details','units','unit_price']));
+        return redirect('/invoices');
+    }
+
+    public function destroy(Invoice $invoice)
+    {
+        $invoice->delete();
+        return redirect('/invoices');
+
     }
 }
