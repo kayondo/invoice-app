@@ -12,9 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
 });
 
+
 Route::resource('invoices', 'InvoiceController');
+Route::get('search', 'InvoiceController@result');
 Route::resource('customers', 'CustomerController');
+Route::resource('products', 'ProductController');
 

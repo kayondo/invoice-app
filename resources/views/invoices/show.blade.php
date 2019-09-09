@@ -8,7 +8,7 @@
 
 <br >
 
-<a href="/invoices/{{ $invoice->id }}/edit">
+<a href="{{route('invoices.edit', $invoice)}}">
 Edit
 </a>
 @endsection

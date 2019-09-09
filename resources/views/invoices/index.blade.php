@@ -7,14 +7,18 @@
     <title>Invoices</title>
 </head>
 <body>
-    
-
-    @foreach ($invoices as $invoice)
+    <a href="{{route('invoices.create')}}">
+        Create an invoice
+    </a>
+    @forelse ($invoices as $invoice)
         <li> 
-        <a href="/invoices/{{$invoice->id}}">
-            {{ $invoice->details }}
-        </a>
-        </li>  
-    @endforeach
+            <a href="{{route('invoices.show', $invoice)}}">
+                {{ $invoice->details }}
+            </a>
+        </li>   
+    @empty
+        <p>You haven't created any invoices</p>
+    @endforelse
+       
 </body>
 </html>

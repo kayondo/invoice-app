@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Customers</title>
+    <title>Products</title>
 </head>
 <body>
-    <a href="{{route('customers.create')}}">
-        Create a new customer
+    <a href="{{route('products.create')}}">
+        Insert a new product
     </a>
     <br >
     <br >
-    @forelse ($customers as $customer)
+    @forelse ($products as $product)
         <li>
-            <a href="{{route('customers.show', $customer)}}">
-                    {{$customer->last_name }} {{$customer->first_name}}
+            <a href="{{route('products.show', $product)}}">
+                    {{$product->name }}
             </a>
 
         </li>
     @empty
-        <p>You don't have any customers yet</p>
+        <p>You don't have any products yet</p>
     @endforelse
 
 </body>

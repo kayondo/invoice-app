@@ -17,20 +17,34 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all();
-
         return view('customers.index', compact('customers'));
     }
 
     public function store()
     {
-        $customer = new Customer();
-        $customer->cust_fname = request('cust_fname');
-        $customer->cust_lname = request('cust_lname');
-        $customer->email = request('email');
-        $customer->company_name = request('company_name');
+        Customer::create(request(['first_name', 'last_name','email', 'company_name']));
+        return redirect('/customers');
+    }
 
-        $customer->save();
+    public function edit(Customer $customer)
+    {
+        return view('customers.edit', compact('customer'));
+    }
 
+    public function show(Customer $customer)
+    {
+        return view('customers.show', compact('customer'));
+    }
+
+    public function update(Customer $customer)
+    {
+        $customer->update(request(['first_name', 'last_name','email', 'company_name']));
+        return redirect('/customers');
+    }
+
+    public function destroy(Customer $customer)
+    {
+        $customer->delete();
         return redirect('/customers');
     }
 }

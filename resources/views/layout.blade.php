@@ -2,6 +2,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -73,6 +75,6 @@ a {
     @yield('content')
     
   </div>
-
+  @yield('bottom-scripts')
 </body>
 </html>

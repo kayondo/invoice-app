@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Invoice;
+use App\Product;
 
 
 class InvoiceController extends Controller
@@ -11,9 +12,10 @@ class InvoiceController extends Controller
     //
     public function create()
     {
-        return view('invoices.create');
+        $products = Product::all();
+        return view('invoices.create', compact('products'));
     }
-
+    
     public function index()
     {
         $invoices = Invoice::all();
@@ -29,7 +31,8 @@ class InvoiceController extends Controller
 
     public function edit(Invoice $invoice)
     {
-        return view('invoices.edit', compact('invoice'));
+        $products = Product::all();
+        return view('invoices.edit', compact('invoice','products'));
     }
 
     public function show(Invoice $invoice)
@@ -48,5 +51,11 @@ class InvoiceController extends Controller
         $invoice->delete();
         return redirect('/invoices');
 
+    }
+
+    public function result(Request  $request)
+    {
+        $result= Product::select('name')->where('name', 'LIKE', "%{$request->input('query')}%")->get();
+        return response()->json($result);
     }
 }

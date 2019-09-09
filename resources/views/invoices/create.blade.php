@@ -9,16 +9,20 @@
     <p>Create an invoice</p>
     <hr>
 
-    <label for="details"><b>Details</b></label>
-    <input type="text" placeholder="Details" name="details" required>
+    <label>Product</label>
+    <select name="product_id" id="" class="form-control">
+      @foreach ($products as $product)
+        <option value="{{ $product->id }}">{{ $product->name }}</option>
+      @endforeach
+    </select>
 
     <br >
     <label for="units"><b>Units</b></label>
     <input type="number" placeholder="Units" name="units" required>
 
     <br >
-    <label for="unit_price"><b>Unit price</b></label>
-    <input type="number" placeholder="Unit price" name="unit_price" required>
+    <label for="price"><b>Unit price</b></label>
+    <input id="price" type="number" placeholder="Unit price" name="unit_price" required>
 
     <hr>
 
@@ -26,6 +30,29 @@
   </div>
   
 </form>
+    
+@endsection
+
+@section('bottom-scripts')
+
+<script type="text/javascript">
+
+
+  var path = "{{ url('search') }}";
+
+  $('#search').typeahead({
+       minLength: 2,
+      source:  function (query, process) {
+      return $.get(path, { query: query }, function (data) {
+          var dataset = [];
+              data.forEach(function(value){
+                  dataset.push(value.name);
+              });
+              return process(dataset);
+          });
+      }
+  });
+  </script>
     
 @endsection
 
